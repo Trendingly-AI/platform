@@ -14,6 +14,16 @@ const router = createRouter({
                     component: () => import('@/views/Dashboard.vue')
                 },
                 {
+                    path: '/news',
+                    name: 'news',
+                    component: () => import('@/views/pages/News.vue')
+                },
+                {
+                    path: '/my-insights',
+                    name: 'My Insights',
+                    component: () => import('@/views/pages/MyInsights.vue')
+                },
+                {
                     path: '/uikit/formlayout',
                     name: 'formlayout',
                     component: () => import('@/views/uikit/FormLayout.vue')

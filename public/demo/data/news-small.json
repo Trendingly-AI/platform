@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "id": 1000,
+            "title": "News 01",
+            "source": "Tech Crunch",
+            "url": "https://techcrunch.com"
+        },
+        {
+            "id": 1001,
+            "title": "News 02",
+            "source": "Wired",
+            "url": "https://wired.com"
+        },
+        {
+            "id": 1002,
+            "title": "News 03",
+            "source": "Fast Company",
+            "url": "https://fastcompany.com"
+        },
+        {
+            "id": 1003,
+            "title": "News 04",
+            "source": "The Information",
+            "url": "https://theinformation.com"
+        },
+        {
+            "id": 1004,
+            "title": "News 05",
+            "source": "The Verge",
+            "url": "https://theverge.com"
+        }
+    ]
+}
