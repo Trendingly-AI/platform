@@ -12,7 +12,7 @@ const model = ref([
         label: 'Generate',
         items: [
             { label: 'News', icon: 'pi pi-fw pi-book', to: '/news' },
-            { label: 'Knowledge Base', icon: 'pi pi-fw pi-globe', to: '/' }
+            { label: 'Knowledge Base', icon: 'pi pi-fw pi-globe', to: '/knowledge-base' }
         ]
     },
     {

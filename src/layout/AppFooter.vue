@@ -8,8 +8,7 @@ const logoUrl = computed(() => {
 
 <template>
     <div class="layout-footer">
-        <img :src="logoUrl" alt="Logo" height="20" class="mr-2" />
-        by
+        <img :src="logoUrl" alt="Logo" height="20" />
         <span class="font-medium ml-2">Trendingly</span>
     </div>
 </template>

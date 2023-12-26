@@ -24,6 +24,11 @@ const router = createRouter({
                     component: () => import('@/views/pages/MyInsights.vue')
                 },
                 {
+                    path: '/knowledge-base',
+                    name: 'Knowledge Base',
+                    component: () => import('@/views/pages/KnowledgeBase.vue')
+                },
+                {
                     path: '/uikit/formlayout',
                     name: 'formlayout',
                     component: () => import('@/views/uikit/FormLayout.vue')

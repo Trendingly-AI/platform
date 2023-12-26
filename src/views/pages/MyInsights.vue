@@ -34,16 +34,13 @@ const hideDialog = () => {
 const saveProduct = () => {
     submitted.value = true;
 
-    if (insight.value.name.trim()) {
+    if (insight.value.title.trim()) {
         if (insight.value.id) {
-            insight.value.inventoryStatus = insight.value.inventoryStatus.value ? insight.value.inventoryStatus.value : insight.value.inventoryStatus;
             insights.value[findIndexById(insight.value.id)] = insight.value;
             toast.add({ severity: 'success', summary: 'Successful', detail: 'Insight Updated', life: 3000 });
         } else {
             insight.value.id = createId();
             insight.value.code = createId();
-            insight.value.image = 'product-placeholder.svg';
-            insight.value.inventoryStatus = insight.value.inventoryStatus ? insight.value.inventoryStatus.value : 'INSTOCK';
             insights.value.push(insight.value);
             toast.add({ severity: 'success', summary: 'Successful', detail: 'Insight Created', life: 3000 });
         }
@@ -152,7 +149,7 @@ const deleteSelectedInsights = () => {
             </div>
             <div class="field">
                 <label for="content">Content</label>
-                <Textarea id="content" v-model="insight.content" required="true" rows="3" cols="20"
+                <Textarea id="content" v-model="insight.content" required="true" rows="5" cols="20"
                     :class="{ 'p-invalid': submitted && !insight.content }" />
                 <small class="p-error" v-if="submitted && !insight.content">Content is required.</small>
             </div>
@@ -163,7 +160,7 @@ const deleteSelectedInsights = () => {
                 <small class="p-error" v-if="submitted && !insight.tag">Tag is required.</small>
             </div>
             <template #footer>
-                <Button label="Cancel" icon="pi pi-times" text @click="hideDialog" />
+                <Button label="Cancel" icon="pi pi-times" severity="danger" text @click="hideDialog" />
                 <Button label="Save" icon="pi pi-check" text @click="saveProduct" />
             </template>
         </Dialog>
@@ -197,4 +194,5 @@ const deleteSelectedInsights = () => {
         </Dialog>
         <!-- /DELETE INSIGHTS DIALOG -->
     </div>
+    <Toast />
 </template>
