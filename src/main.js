@@ -102,11 +102,24 @@ import VirtualScroller from 'primevue/virtualscroller';
 
 import BlockViewer from '@/components/BlockViewer.vue';
 
+import { createAuth0 } from '@auth0/auth0-vue';
+
 import '@/assets/styles.scss';
 
 const app = createApp(App);
 
 app.use(router);
+
+app.use(
+    createAuth0({
+        domain: 'dev-2tfy0mowx3ks1tyu.us.auth0.com',
+        clientId: 'sxNBZIv43gnVW8lvR45pX0f6csmFmaad',
+        authorizationParams: {
+            redirect_uri: window.location.origin
+        }
+    })
+);
+
 app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(DialogService);

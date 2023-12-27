@@ -1,13 +1,17 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from '@/layout/composables/layout';
+import { useAuth0 } from '@auth0/auth0-vue';
 import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const { onMenuToggle } = useLayout();
 
 const outsideClickListener = ref(null);
 const topbarMenuActive = ref(false);
-const router = useRouter();
+
+const { logout } = useAuth0();
 
 onMounted(() => {
     bindOutsideClickListener();
@@ -21,12 +25,11 @@ const logoUrl = computed(() => {
     return `layout/images/logo.svg`;
 });
 
-const onTopBarMenuButton = () => {
-    topbarMenuActive.value = !topbarMenuActive.value;
+const onProfileClick = () => {
+    router.push('/profile');
 };
-const onSettingsClick = () => {
-    topbarMenuActive.value = false;
-    router.push('/documentation');
+const onLogout = () => {
+    logout({ logoutParams: { returnTo: window.location.origin } });
 };
 const topbarMenuClasses = computed(() => {
     return {
@@ -71,17 +74,17 @@ const isOutsideClicked = (event) => {
             <i class="pi pi-bars"></i>
         </button>
 
-        <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
+        <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onProfileClick()">
             <i class="pi pi-ellipsis-v"></i>
         </button>
 
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <button @click="onTopBarMenuButton()" class="p-link layout-topbar-button">
+            <button @click="onProfileClick()" class="p-link layout-topbar-button">
                 <i class="pi pi-user"></i>
                 <span>Profile</span>
             </button>
-            <button @click="onSettingsClick()" class="p-link layout-topbar-button">
-                <i class="pi pi-cog"></i>
+            <button @click="onLogout()" class="p-link layout-topbar-button">
+                <i class="pi pi-sign-out"></i>
                 <span>Settings</span>
             </button>
         </div>
