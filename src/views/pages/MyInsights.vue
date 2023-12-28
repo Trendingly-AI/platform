@@ -35,38 +35,42 @@ const saveProduct = () => {
     submitted.value = true;
 
     if (insight.value.title.trim()) {
-        if (insight.value.id) {
-            insights.value[findIndexById(insight.value.id)] = insight.value;
-            toast.add({ severity: 'success', summary: 'Successful', detail: 'Insight Updated', life: 3000 });
+        if (insight.value._id) {
+            insightsService.updateInsight(insight.value).then((updatedInsight) => {
+                insights.value[findIndexById(updatedInsight._id)] = updatedInsight;
+                toast.add({ severity: 'success', summary: 'Successful', detail: 'Insight Updated', life: 3000 });
+            });
         } else {
-            insight.value.id = createId();
-            insight.value.code = createId();
-            insights.value.push(insight.value);
-            toast.add({ severity: 'success', summary: 'Successful', detail: 'Insight Created', life: 3000 });
+            insightsService.saveInsight(insight.value).then((newInsight) => {
+                insights.value.push(newInsight);
+                toast.add({ severity: 'success', summary: 'Successful', detail: 'Insight Created', life: 3000 });
+            });
         }
 
         insightDialog.value = false;
         insight.value = {};
     }
 };
-const editInsight = (prod) => {
-    insight.value = { ...prod };
+const editInsight = (ins) => {
+    insight.value = { ...ins };
     insightDialog.value = true;
 };
-const confirmDeleteInsight = (prod) => {
-    insight.value = prod;
+const confirmDeleteInsight = (ins) => {
+    insight.value = ins;
     deleteInsightDialog.value = true;
 };
 const deleteInsight = () => {
-    insights.value = insights.value.filter((val) => val.id !== insight.value.id);
-    deleteInsightDialog.value = false;
-    insight.value = {};
-    toast.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+    insightsService.deleteInsight(insight.value._id).then(() => {
+        insights.value = insights.value.filter((val) => val._id !== insight.value._id);
+        deleteInsightDialog.value = false;
+        insight.value = {};
+        toast.add({ severity: 'success', summary: 'Successful', detail: 'Insight Deleted', life: 3000 });
+    });
 };
 const findIndexById = (id) => {
     let index = -1;
     for (let i = 0; i < insights.value.length; i++) {
-        if (insights.value[i].id === id) {
+        if (insights.value[i]._id === id) {
             index = i;
             break;
         }
@@ -74,14 +78,7 @@ const findIndexById = (id) => {
 
     return index;
 };
-const createId = () => {
-    let id = '';
-    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (var i = 0; i < 5; i++) {
-        id += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return id;
-};
+
 const exportCSV = () => {
     dt.value.exportCSV();
 };
@@ -89,10 +86,13 @@ const confirmDeleteSelected = () => {
     deleteInsightsDialog.value = true;
 };
 const deleteSelectedInsights = () => {
-    insights.value = insights.value.filter((val) => !selectedInsights.value.includes(val));
-    deleteInsightsDialog.value = false;
-    selectedInsights.value = null;
-    toast.add({ severity: 'success', summary: 'Successful', detail: 'Insights Deleted', life: 3000 });
+    const selectedIds = selectedInsights.value.map((insight) => insight._id);
+    insightsService.deleteInsights(selectedIds).then(() => {
+        insights.value = insights.value.filter((val) => !selectedIds.includes(val._id));
+        deleteInsightsDialog.value = false;
+        selectedInsights.value = null;
+        toast.add({ severity: 'success', summary: 'Successful', detail: 'Insights Deleted', life: 3000 });
+    });
 };
 </script>
 <template>

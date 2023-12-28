@@ -16,5 +16,8 @@ module.exports = {
                 order: ['script', 'template', 'style']
             }
         ]
+    },
+    globals: {
+        process: true
     }
 };
