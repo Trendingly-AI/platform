@@ -70,7 +70,7 @@ onMounted(() => {
                 <template #title>Trending Insights</template>
                 <template #content>
                     <div class="grid">
-                        <div class="col-4 md:col-4">
+                        <div class="md:col-4 sm:col-12">
                             <Card>
                                 <template #header>
                                     <img alt="user header" class="border-round" src="https://picsum.photos/290/200"
@@ -97,7 +97,7 @@ onMounted(() => {
                                 </template>
                             </Card>
                         </div>
-                        <div class="col-4 md:col-4">
+                        <div class="md:col-4 sm:col-12">
                             <Card>
                                 <template #header>
                                     <img alt="user header" class="border-round" src="https://picsum.photos/285/200"
@@ -124,7 +124,7 @@ onMounted(() => {
                                 </template>
                             </Card>
                         </div>
-                        <div class="col-4 md:col-4">
+                        <div class="md:col-4 sm:col-12">
                             <Card>
                                 <template #header>
                                     <img alt="user header" class="border-round" src="https://picsum.photos/295/200"
