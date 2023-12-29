@@ -89,10 +89,10 @@ onMounted(() => {
                                 </template>
                                 <template #footer>
                                     <div class="text-center">
-                                        <Button icon="pi pi-thumbs-up" class="mr-1" aria-label="Add" severity="success"
-                                            size="large" rounded text />
                                         <Button icon="pi pi-thumbs-down" aria-label="Dislike" severity="danger" size="large"
                                             rounded text />
+                                        <Button icon="pi pi-thumbs-up" class="mr-1" aria-label="Add" severity="success"
+                                            size="large" rounded text />
                                     </div>
                                 </template>
                             </Card>
@@ -116,10 +116,10 @@ onMounted(() => {
                                 </template>
                                 <template #footer>
                                     <div class="text-center">
-                                        <Button icon="pi pi-thumbs-up" class="mr-1" aria-label="Add" severity="success"
-                                            size="large" rounded text />
                                         <Button icon="pi pi-thumbs-down" aria-label="Dislike" severity="danger" size="large"
                                             rounded text />
+                                        <Button icon="pi pi-thumbs-up" class="mr-1" aria-label="Add" severity="success"
+                                            size="large" rounded text />
                                     </div>
                                 </template>
                             </Card>
@@ -143,10 +143,10 @@ onMounted(() => {
                                 </template>
                                 <template #footer>
                                     <div class="text-center">
-                                        <Button icon="pi pi-thumbs-up" class="mr-1" aria-label="Add" severity="success"
-                                            size="large" rounded text />
                                         <Button icon="pi pi-thumbs-down" aria-label="Dislike" severity="danger" size="large"
                                             rounded text />
+                                        <Button icon="pi pi-thumbs-up" class="mr-1" aria-label="Add" severity="success"
+                                            size="large" rounded text />
                                     </div>
                                 </template>
                             </Card>

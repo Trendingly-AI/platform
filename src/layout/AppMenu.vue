@@ -6,17 +6,20 @@ import AppMenuItem from './AppMenuItem.vue';
 const model = ref([
     {
         label: 'Home',
-        items: [{ label: 'My Feed', icon: 'pi pi-fw pi-mobile', to: '/' }]
+        items: [
+            { label: 'What is Trendingly?', icon: 'pi pi-fw pi-chart-line', to: '/' },
+            { label: 'My Feed', icon: 'pi pi-fw pi-mobile', to: '/feed' }
+        ]
     },
     {
-        label: 'Generate',
+        label: 'Generate Insights',
         items: [
             { label: 'News', icon: 'pi pi-fw pi-book', to: '/news' },
             { label: 'Knowledge Base', icon: 'pi pi-fw pi-globe', to: '/knowledge-base' }
         ]
     },
     {
-        label: 'Review',
+        label: 'Review Insights',
         items: [{ label: 'My Insights', icon: 'pi pi-fw pi-database', to: '/my-insights' }]
     }
 ]);

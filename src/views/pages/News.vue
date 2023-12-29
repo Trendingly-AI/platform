@@ -68,6 +68,9 @@ const steps = ref([
 ]);
 </script>
 <template>
+    <div class="card">
+        <Steps :model="steps" />
+    </div>
     <div class="grid">
         <div class="col-12">
             <Card>
@@ -76,9 +79,6 @@ const steps = ref([
                     <p>Find the top news from the web and explore the trends!</p>
                 </template>
                 <template #content>
-                    <div class="card">
-                        <Steps :model="steps" />
-                    </div>
                     <div class="grid">
                         <div class="col-12">
                             <Toolbar>
