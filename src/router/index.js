@@ -10,16 +10,15 @@ const router = createRouter({
             component: AppLayout,
             children: [
                 {
-                    path: '/feed',
-                    name: 'feed',
+                    path: '/',
+                    name: 'dashboard',
                     component: () => import('@/views/Dashboard.vue'),
                     beforeEnter: createAuthGuard()
                 },
                 {
-                    path: '/',
-                    name: 'intro',
-                    component: () => import('@/views/pages/Intro.vue'),
-                    beforeEnter: createAuthGuard()
+                    path: '/feed',
+                    name: 'feed',
+                    component: () => import('@/views/pages/Feed.vue')
                 },
                 {
                     path: '/news',

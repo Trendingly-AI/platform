@@ -1,4 +1,4 @@
-export default class NewsService {
+export default class InsightsService {
     getInsightsSmall() {
         return fetch(`${import.meta.env.VITE_API_BASE_URL}/insights`)
             .then((res) => res.json())

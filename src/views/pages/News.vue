@@ -5,7 +5,7 @@ import NewsService from '@/service/NewsService';
 
 let newsService = new NewsService();
 onMounted(() => {
-    newsService.getNewsSmall().then((data) => (news.value = data));
+    newsService.getAllNews().then((data) => (news.value = data));
 });
 
 const news = ref();
@@ -66,6 +66,27 @@ const steps = ref([
         label: 'Save or share'
     }
 ]);
+
+const loadingNews = ref(false);
+
+const selectedButton = ref('All');
+
+const fetchNews = async (q) => {
+    if (q === '' || q === undefined) {
+        selectedButton.value = 'All';
+    } else {
+        selectedButton.value = q;
+    }
+
+    loadingNews.value = true;
+    try {
+        news.value = await newsService.getAllNews(q);
+        loadingNews.value = false;
+    } catch (error) {
+        console.error(error);
+        loadingNews.value = false;
+    }
+};
 </script>
 <template>
     <div class="card">
@@ -83,23 +104,40 @@ const steps = ref([
                         <div class="col-12">
                             <Toolbar>
                                 <template #center>
-                                    <Button label="Marketing" severity="info" class="mr-2" />
-                                    <Button label="AI" severity="info" class="mr-2" />
-                                    <Button label="Finance" severity="info" class="mr-2" />
-                                    <Button label="Sales" severity="info" class="mr-2" />
-                                    <Button label="Human Resources" severity="info" class="mr-2" />
-                                    <Button label="Retail" severity="info" class="mr-2" />
-                                    <Button label="Health" severity="info" />
+                                    <Button label="All" severity="info" class="mr-2" @click="fetchNews()"
+                                        :outlined="selectedButton !== 'All'" />
+                                    <Button label="Marketing" severity="info" class="mr-2" @click="fetchNews('Marketing')"
+                                        :outlined="selectedButton !== 'Marketing'" />
+                                    <Button label="AI" severity="info" class="mr-2" @click="fetchNews('AI')"
+                                        :outlined="selectedButton !== 'AI'" />
+                                    <Button label="Finance" severity="info" class="mr-2" @click="fetchNews('Finance')"
+                                        :outlined="selectedButton !== 'Finance'" />
+                                    <Button label="Sales" severity="info" class="mr-2" @click="fetchNews('Sales')"
+                                        :outlined="selectedButton !== 'Sales'" />
+                                    <Button label="Human Resources" severity="info" class="mr-2"
+                                        @click="fetchNews('Human Resources')"
+                                        :outlined="selectedButton !== 'Human Resources'" />
+                                    <Button label="Retail" severity="info" class="mr-2" @click="fetchNews('Retail')"
+                                        :outlined="selectedButton !== 'Retail'" />
+                                    <Button label="Health" severity="info" @click="fetchNews('Health')"
+                                        :outlined="selectedButton !== 'Health'" />
                                 </template>
                             </Toolbar>
                         </div>
                         <div class="col-12">
                             <DataTable v-model:selection="selectedNews" :value="news" @rowUnselect="onRowUnselect"
-                                dataKey="title">
+                                dataKey="title" :loading="loadingNews">
                                 <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
                                 <Column field="title" header="Title"></Column>
-                                <Column field="source" header="Source"></Column>
-                                <Column field="url" header="URL"></Column>
+                                <Column field="source.name" header="Source"></Column>
+                                <Column field="url" header="URL">
+                                    <template #body="slotProps">
+                                        {{ slotProps.data.url }}
+                                        <a :href="slotProps.data.url" target="_blank" rel="noopener noreferrer">
+                                            <i class="pi pi-external-link text-primary" style="font-size: 0.8rem"></i>
+                                        </a>
+                                    </template>
+                                </Column>
                             </DataTable>
                         </div>
                         <div class="col-12 text-center m-3">

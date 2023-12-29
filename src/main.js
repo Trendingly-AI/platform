@@ -104,12 +104,14 @@ import BlockViewer from '@/components/BlockViewer.vue';
 
 import { createAuth0 } from '@auth0/auth0-vue';
 
+import VueTouchEvents from 'vue3-touch-events';
+
 import '@/assets/styles.scss';
 
 const app = createApp(App);
 
+app.use(VueTouchEvents);
 app.use(router);
-
 app.use(
     createAuth0({
         domain: 'dev-2tfy0mowx3ks1tyu.us.auth0.com',

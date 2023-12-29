@@ -7,7 +7,7 @@ const model = ref([
     {
         label: 'Home',
         items: [
-            { label: 'What is Trendingly?', icon: 'pi pi-fw pi-chart-line', to: '/' },
+            { label: 'Dashboard', icon: 'pi pi-fw pi-chart-line', to: '/' },
             { label: 'My Feed', icon: 'pi pi-fw pi-mobile', to: '/feed' }
         ]
     },
